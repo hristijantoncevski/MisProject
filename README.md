@@ -3,7 +3,7 @@
 Foodly е апликација за нарачка на храна и пијалоци од разни места.
 
 ## Карактеристики
- * Логин и регистрација преку FirebaseAuth,
+ * Логин и регистрација преку FirebaseAuth
  * Чување на дата во Firebase Cloud Firestore
  * Локациски сервиси
  * Мапа
@@ -18,4 +18,4 @@ Foodly е апликација за нарачка на храна и пијал
 ## Provider ##
 ## Navigation ##
 ## Factory ##
-## Repository ##
+## Singleton ##
