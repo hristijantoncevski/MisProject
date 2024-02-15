@@ -45,7 +45,7 @@ class _OrderHistoryState extends State<OrderHistory> {
               return Card(
                 margin: const EdgeInsets.all(8.0),
                 child: ListTile(
-                  title: Text('Order ID: ${orderProvider.orders[index].id}'),
+                  title: Text('Order ID: ${orderProvider.orders[index].id}', style: const TextStyle(fontSize: 15),),
                   subtitle: Text('Order Price: \$${orderProvider.orders[index].totalPrice.toStringAsFixed(2)}'),
                   onTap: () {
 

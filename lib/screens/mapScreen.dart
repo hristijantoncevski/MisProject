@@ -36,9 +36,9 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<Position> getCurrentLocation() async {
-    await LocationPermissions().getPermissions();
+    await LocationPermissions.instance.getPermissions();
 
-    return LocationPermissions().getCurrentLocation();
+    return LocationPermissions.instance.getCurrentLocation();
   }
 
   void addMarkers() async {

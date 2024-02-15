@@ -92,6 +92,19 @@ class _CartScreenState extends State<CartScreen> {
                       Provider.of<OrderProvider>(context, listen: false).addOrder(order);
 
                       shoppingCartProvider.clearCart();
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: const Text('Order placed'),
+                            duration: const Duration(milliseconds: 1000),
+                            width: 280.0,
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          )
+                      );
+
                     },
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                     child: const Text('Checkout'),

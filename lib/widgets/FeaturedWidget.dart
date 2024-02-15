@@ -13,8 +13,6 @@ class Featured extends StatefulWidget {
 }
 
 class _FeaturedState extends State<Featured> {
-  Position? _userLocation;
-
   @override
   void initState() {
     super.initState();
@@ -22,26 +20,10 @@ class _FeaturedState extends State<Featured> {
     Provider.of<FeaturedProvider>(context, listen: false).loadFeaturedItems();
   }
 
-  Future<void> _calculateDistance() async {
-    try {
-      await LocationPermissions().getPermissions();
-      _userLocation = await Geolocator.getCurrentPosition();
-
-      setState(() {
-
-      });
-    } catch (error) {
-      print(error);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<FeaturedProvider>(
       builder: (context, featuredProvider, child) {
-        if(_userLocation == null){
-          _calculateDistance();
-        }
         return SizedBox(
           height: 220,
           width: double.infinity,
@@ -76,19 +58,6 @@ class _FeaturedState extends State<Featured> {
                                 Text(featuredProvider.featuredItems[index].name, style: const TextStyle(fontSize: 16)),
                                 const SizedBox(height: 2),
                                 Text(featuredProvider.featuredItems[index].address, style: const TextStyle(fontSize: 15)),
-                                const SizedBox(height: 40),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    _userLocation != null ? Text("Distance: ${Geolocator.distanceBetween(
-                                      featuredProvider.featuredItems[index].location.latitude,
-                                      featuredProvider.featuredItems[index].location.longitude,
-                                      _userLocation!.latitude,
-                                      _userLocation!.longitude,
-                                    ).toStringAsFixed(2)} m", style: const TextStyle(fontSize: 12)) : const Icon(Icons.location_off_outlined)
-                                  ],
-                                ),
                               ],
                             ),
                           ),

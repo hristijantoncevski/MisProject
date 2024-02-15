@@ -28,7 +28,16 @@ class _FavoritesState extends State<Favorites> {
             children: <Widget>[
               title(),
               favoriteProvider.favoriteItems.isEmpty ?
-              const Expanded(child: SizedBox(child: Card(child: Center(child: Text('You have no favorites', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red))))))
+              Expanded(child: SizedBox(
+                  child: Card(
+                    shape: BeveledRectangleBorder(
+                      side: const BorderSide(
+                        color: Colors.orange,
+                      ),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: const Center(
+                      child: Text('You have no favorites', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red))))))
                   :
               Expanded(
                 child: ListView.builder(
@@ -48,8 +57,14 @@ class _FavoritesState extends State<Favorites> {
                         });
                       },
                       child: SizedBox(
-                        width: 220,
+                        width: 200,
                         child: Card(
+                          shape: BeveledRectangleBorder(
+                            side: const BorderSide(
+                              color: Colors.orange,
+                            ),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(

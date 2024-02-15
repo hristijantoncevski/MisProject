@@ -1,12 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:misproject/screens/login_screen.dart';
 import 'package:misproject/services/authProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class Register extends StatefulWidget {
   Register({super.key});
@@ -15,11 +11,10 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 class _RegisterState extends State<Register> {
-  File? _image;
   final TextEditingController nameTextController = TextEditingController();
   final TextEditingController emailTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
-  String imageUrl = '';
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -33,6 +28,8 @@ class _RegisterState extends State<Register> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Image.asset("assets/images/logo/logoFoodly.png", height: 115, width: 115),
+              const SizedBox(height: 16),
               const Text(
                 'Register',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

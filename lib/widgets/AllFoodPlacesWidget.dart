@@ -23,16 +23,14 @@ class _AllFoodPlacesState extends State<AllFoodPlaces> {
     return Consumer<FoodPlaceProvider>(
       builder: (context, foodPlaceProvider, child){
         return SizedBox(
-          height: 480,
+          height: 180,
           width: double.infinity,
           child: Column(
             children: <Widget>[
               title(foodPlaceProvider),
               Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
                   itemCount: 4,
                   itemBuilder: (context, index){
                     if(foodPlaceProvider.foodPlaces.isEmpty) { return const CircularProgressIndicator();} else {
@@ -47,17 +45,20 @@ class _AllFoodPlacesState extends State<AllFoodPlaces> {
                                               .foodPlaces[index]))
                           );
                         },
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(foodPlaceProvider.foodPlaces[index].name,
-                                  style: const TextStyle(fontSize: 16)),
-                              const SizedBox(height: 4),
-                              Text(foodPlaceProvider.foodPlaces[index].address,
-                                  style: const TextStyle(fontSize: 15)),
-                            ],
+                        child: SizedBox(
+                          width: 180,
+                          child: Card(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(foodPlaceProvider.foodPlaces[index].name,
+                                    style: const TextStyle(fontSize: 16)),
+                                const SizedBox(height: 4),
+                                Text(foodPlaceProvider.foodPlaces[index].address,
+                                    style: const TextStyle(fontSize: 15)),
+                              ],
+                            ),
                           ),
                         ),
                       );

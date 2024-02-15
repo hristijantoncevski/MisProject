@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 1030,
+      height: 740,
       width: double.infinity,
       margin: const EdgeInsets.only(top: 25, left: 5, right: 5),
       child: Column(

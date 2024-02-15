@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:misproject/models/foodPlace.dart';
 import 'package:misproject/screens/foodDetailsScreen.dart';
 import 'package:misproject/screens/mainScreen.dart';
 import 'package:misproject/screens/mapScreen.dart';
+import 'package:misproject/services/LocationPermissions.dart';
 
 class FoodPlaceDetailsScreen extends StatefulWidget {
   final FoodPlace foodPlace;
@@ -14,14 +16,32 @@ class FoodPlaceDetailsScreen extends StatefulWidget {
 }
 
 class _FoodPlaceDetailsScreenState extends State<FoodPlaceDetailsScreen> {
+  Position? _userLocation;
+
   @override
   void initState() {
     super.initState();
 
   }
 
+  Future<void> _calculateDistance() async {
+    try {
+      await LocationPermissions.instance.getPermissions();
+      _userLocation = await LocationPermissions.instance.getCurrentLocation();
+
+      setState(() {
+
+      });
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if(_userLocation == null) {
+      _calculateDistance();
+    }
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -42,6 +62,13 @@ class _FoodPlaceDetailsScreenState extends State<FoodPlaceDetailsScreen> {
             const SizedBox(height: 16),
             Text('Address: ${widget.foodPlace.address}', style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 2),
+            _userLocation != null ? Text("Distance to ${widget.foodPlace.name}: ${Geolocator.distanceBetween(
+              widget.foodPlace.location.latitude,
+              widget.foodPlace.location.longitude,
+              _userLocation!.latitude,
+              _userLocation!.longitude,
+            ).toStringAsFixed(2)} m", style: const TextStyle(fontSize: 15)) : const Icon(Icons.location_off_outlined),
+            const SizedBox(height: 2),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MapScreen(foodPlaces: [widget.foodPlace])));
@@ -57,7 +84,7 @@ class _FoodPlaceDetailsScreenState extends State<FoodPlaceDetailsScreen> {
                   final item = widget.foodPlace.menu[index];
                   return GestureDetector(
                     onTap: () {
-                      Future.delayed(const Duration(milliseconds: 1200), ()
+                      Future.delayed(const Duration(milliseconds: 800), ()
                       {
                         Navigator.push(
                             context,

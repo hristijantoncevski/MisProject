@@ -29,6 +29,8 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Image.asset("assets/images/logo/logoFoodly.png", height: 115, width: 115),
+              const SizedBox(height: 16),
               const Text(
                 'Login',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

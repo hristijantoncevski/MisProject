@@ -1,7 +1,13 @@
 import 'package:geolocator/geolocator.dart';
 
 class LocationPermissions {
-  LocationPermissions();
+  static final LocationPermissions instance = LocationPermissions.internal();
+
+  factory LocationPermissions() {
+    return instance;
+  }
+
+  LocationPermissions.internal();
 
   Future<void> getPermissions() async {
     LocationPermission permission = await Geolocator.requestPermission();

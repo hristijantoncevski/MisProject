@@ -73,7 +73,7 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: const Text('Added to cart! ✔'),
-                      duration: const Duration(milliseconds: 2000),
+                      duration: const Duration(milliseconds: 1000),
                       width: 280.0,
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(

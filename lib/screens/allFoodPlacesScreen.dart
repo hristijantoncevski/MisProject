@@ -4,9 +4,9 @@ import 'package:misproject/screens/foodPlaceDetailsScreen.dart';
 import 'package:misproject/screens/mapScreen.dart';
 
 class AllFoodPlacesScreen extends StatefulWidget {
-  List<FoodPlace> foodPlaces;
+  final List<FoodPlace> foodPlaces;
 
-  AllFoodPlacesScreen({super.key, required this.foodPlaces});
+  const AllFoodPlacesScreen({super.key, required this.foodPlaces});
 
   @override
   State<AllFoodPlacesScreen> createState() => _AllFoodPlacesScreenState();
